@@ -4,7 +4,6 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const db = process.env.MONGO_DB_URI;
-// console.log(db);
 
 const connectToMongoDB = async ()=>{
     try {

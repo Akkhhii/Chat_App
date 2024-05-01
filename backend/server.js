@@ -3,14 +3,13 @@ const dotenv = require('dotenv')
 const connectToMongoDB = require('./connection/connection')
 const cookieParser = require('cookie-parser')
 
-// import authRoutes from './route/authRoutes.js'
 const authRoutes = require('./route/authRoutes')
 const messageRoutes = require('./route/message')
 const userRoutes = require('./route/userRoute')
 
-dotenv.config()
+const {app, server} = require('./socket/socket')
 
-const app = express()
+dotenv.config()
 
 const PORT = process.env.PORT || 4000
 
@@ -23,7 +22,7 @@ app.use('/api/auth', authRoutes)
 app.use('/api/message', messageRoutes)
 app.use('/api/users', userRoutes)
 
-app.listen(PORT, ()=>{
+server.listen(PORT, ()=>{
     connectToMongoDB()
     console.log(`Server started at ${PORT}`);
 })

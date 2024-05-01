@@ -1,6 +1,6 @@
 const Conversation = require("../model/conversation");
 const Message = require("../model/message");
-
+const { getReceiverSocketId, io } = require("../socket/socket");
 
 
 const sendMessage = async (req, res)=>{
@@ -10,7 +10,7 @@ const sendMessage = async (req, res)=>{
         const senderId = req.user._id;
 
         let conversation = await Conversation.findOne({
-            particiapants : { $all : [senderId, receiverId] },
+            participants : { $all : [senderId, receiverId] },
         })
 
         if(!conversation){
@@ -31,11 +31,16 @@ const sendMessage = async (req, res)=>{
 
         await Promise.all([conversation.save(), newMessage.save()])
 
+        const receiverSocketId = getReceiverSocketId(receiverId);
+        if(receiverSocketId){
+            io.to(receiverSocketId).emit('newMessage' , newMessage)
+        }
+
         res.status(201).json(newMessage)
 
     } catch (error) {
-        console.log("Error in sending message :", error.sendMessage);
-        res.status().json({error : "Internal server error"});
+        console.log("Error in sending message :", error.message);
+        res.status(500).json({error : "Internal server error"});
     }
 }
 
