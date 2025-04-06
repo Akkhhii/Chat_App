@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 4000
 
 // Add this before routes
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://chatbuddy-zf63.onrender.com',
   credentials: true
 }));
 
