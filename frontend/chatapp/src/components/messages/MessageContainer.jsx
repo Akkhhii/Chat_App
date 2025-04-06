@@ -1,5 +1,4 @@
 import { TiMessages } from "react-icons/ti";
-import { useSelector } from 'react-redux'
 import { useAuthContext } from "../../context/AuthContext";
 
 const MessageContainer = () => {

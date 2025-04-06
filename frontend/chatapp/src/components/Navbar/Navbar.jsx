@@ -1,11 +1,10 @@
 import { RxHamburgerMenu } from "react-icons/rx";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {setNav} from '../../store/conversationSlice'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Navbar = () => {
 const dispatch = useDispatch();
-const navVal = useSelector((state)=>state.getConversations.navVal);
 const [navValue, setNavValue] = useState(false);
 
 const handleNav = ()=>{
