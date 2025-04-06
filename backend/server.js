@@ -1,6 +1,7 @@
+require('dotenv').config()
 const express = require('express')
-const dotenv = require('dotenv')
 const connectToMongoDB = require('./connection/connection')
+const cors = require('cors');
 const cookieParser = require('cookie-parser')
 
 const authRoutes = require('./route/authRoutes')
@@ -9,9 +10,15 @@ const userRoutes = require('./route/userRoute')
 
 const {app, server} = require('./socket/socket')
 
-dotenv.config()
-
 const PORT = process.env.PORT || 4000
+
+
+// Add this before routes
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}));
+
 
 // Default middlewares
 app.use(express.json())
