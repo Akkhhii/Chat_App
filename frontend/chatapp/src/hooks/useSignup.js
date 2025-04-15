@@ -12,7 +12,7 @@ const useSignup = () => {
     if(!success) return console.log('No data present');
 
     try {
-        const res = await fetch("/api/auth/signup",{
+        const res = await fetch("https://chatbuddy-zf63.onrender.com/api/auth/signup",{
             method : "POST",
             headers : {"Content-type" : "application/json"},
             body : JSON.stringify({fullName, username, password, confirmPassword, gender}),

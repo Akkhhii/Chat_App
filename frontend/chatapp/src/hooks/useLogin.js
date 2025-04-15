@@ -11,7 +11,7 @@ const useLogin = () => {
         if(!success) return;
         setLoading(true)
         try {
-            const res = await fetch('/api/auth/login',{
+            const res = await fetch('https://chatbuddy-zf63.onrender.com/api/auth/login',{
                 method : "POST",
                 headers : {"Content-Type" : "application/json"},
                 body : JSON.stringify({username, password})
@@ -42,7 +42,7 @@ const handleUserLogin = (username, password)=>{
 		toast.error("Please fill in all fields");
 		return false;
 	}
-    if(password.length < 6){
+    if(password.length < 8){
         toast.error("Password must be >= to 8");
 		return false;
     }

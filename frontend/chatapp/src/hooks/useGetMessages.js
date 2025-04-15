@@ -15,7 +15,7 @@ const useGetMessages = () => {
         const getMessages = async ()=>{
             setLoading(true);
             try {
-                const res = await fetch(`/api/message/${selectedUser._id}`);
+                const res = await fetch(`https://chatbuddy-zf63.onrender.com/api/message/${selectedUser._id}`);
                 const data = await res.json();
                 if(data.error) throw new Error(data.error);
                 dispatch(setMessages(data));

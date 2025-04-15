@@ -13,7 +13,7 @@ const useSendMessage = () => {
     const sendMessage = async (message)=>{
         setLoading(true);
         try {
-            const res = await fetch(`/api/message/send/${selectedUser._id}`,{
+            const res = await fetch(`https://chatbuddy-zf63.onrender.com/api/message/send/${selectedUser._id}`,{
                 method : "POST",
                 headers : {
                     "Content-Type": "application/json",

@@ -10,7 +10,7 @@ import { useAuthContext } from '../context/AuthContext';
             setLoading(true)
             try {
 
-                const res = await fetch("/api/auth/logout", {
+                const res = await fetch("https://chatbuddy-zf63.onrender.com/api/auth/logout", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                 });
