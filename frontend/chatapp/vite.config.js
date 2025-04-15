@@ -6,10 +6,10 @@ export default defineConfig({
   plugins: [react()],
   server : {
     port :5173,
-    proxy : {
-      "/api":{
-        target : "https://chatbuddy-zf63.onrender.com",
-      },
-    },
+    // proxy : {
+    //   "/api":{
+    //     target : "https://chatbuddy-zf63.onrender.com",
+    //   },
+    // },
   },
 })
