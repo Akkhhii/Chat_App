@@ -9,7 +9,8 @@ const useGetConversation = () => {
     const getConversations = async ()=>{
         setLoading(true)
         try {
-            const token = localStorage.getItem('chat-user')?.token;
+            const storedUser = JSON.parse(localStorage.getItem('chat-user'));
+            const token = storedUser?.token;
 
             console.log(token);
             
