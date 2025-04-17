@@ -9,10 +9,13 @@ const useGetConversation = () => {
     const getConversations = async ()=>{
         setLoading(true)
         try {
+            const storedUser = JSON.parse(localStorage.getItem('chat-user'));
+            const token = storedUser?.token;
+
             const res = await fetch('https://chatbuddy-zf63.onrender.com/api/users',{
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}` // or sessionStorage if that's where you're storing it
+                    'Authorization': `Bearer ${token}`
                   }
             });
             const data = await res.json()
