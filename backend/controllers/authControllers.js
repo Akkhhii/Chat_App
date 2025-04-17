@@ -35,7 +35,7 @@ const signup = async (req, res)=>{
             profilePic : gender === 'male' ? maleProfile : femaleProfile,
         })
         if(newUser){
-            generateTokenAndSetCookie(newUser._id, res)
+           const token = generateTokenAndSetCookie(newUser._id, res)
             await newUser.save()
 
         res.status(201).json({
@@ -43,6 +43,7 @@ const signup = async (req, res)=>{
             fullName : newUser.fullname,
             username : newUser.username,
             profilePic : newUser.profilePic,
+            token : token,
         })
     } else{
         res.status(400).json({error : "Invalid user data"})
@@ -66,8 +67,6 @@ const login = async (req, res)=>{
         }
 
         const token = generateTokenAndSetCookie(user._id, res);
-
-        console.log("Generated Token:", token);
 
         res.status(200).json({
             _id : user._id,
