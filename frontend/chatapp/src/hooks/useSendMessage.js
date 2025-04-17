@@ -13,10 +13,15 @@ const useSendMessage = () => {
     const sendMessage = async (message)=>{
         setLoading(true);
         try {
+
+            const storedUser = JSON.parse(localStorage.getItem('chat-user'));
+            const token = storedUser?.token;
+
             const res = await fetch(`https://chatbuddy-zf63.onrender.com/api/message/send/${selectedUser._id}`,{
                 method : "POST",
                 headers : {
                     "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
                 },
                 body : JSON.stringify({message}),
             });

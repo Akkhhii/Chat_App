@@ -11,9 +11,15 @@ const useLogin = () => {
         if(!success) return;
         setLoading(true)
         try {
+            const storedUser = JSON.parse(localStorage.getItem('chat-user'));
+            const token = storedUser?.token;
+            
             const res = await fetch('https://chatbuddy-zf63.onrender.com/api/auth/login',{
                 method : "POST",
-                headers : {"Content-Type" : "application/json"},
+                headers : {
+                    "Content-Type" : "application/json",
+                    'Authorization': `Bearer ${token}`
+                },
                 body : JSON.stringify({username, password})
             });
 

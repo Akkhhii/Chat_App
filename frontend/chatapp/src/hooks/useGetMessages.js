@@ -15,7 +15,15 @@ const useGetMessages = () => {
         const getMessages = async ()=>{
             setLoading(true);
             try {
-                const res = await fetch(`https://chatbuddy-zf63.onrender.com/api/message/${selectedUser._id}`);
+                const storedUser = JSON.parse(localStorage.getItem('chat-user'));
+                const token = storedUser?.token;
+
+                const res = await fetch(`https://chatbuddy-zf63.onrender.com/api/message/${selectedUser._id}`,{
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                      }
+                });
                 const data = await res.json();
                 if(data.error) throw new Error(data.error);
                 dispatch(setMessages(data));
