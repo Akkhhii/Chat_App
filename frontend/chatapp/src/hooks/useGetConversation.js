@@ -9,8 +9,10 @@ const useGetConversation = () => {
     const getConversations = async ()=>{
         setLoading(true)
         try {
-            const storedUser = JSON.parse(localStorage.getItem('chat-user'));
-            const token = storedUser?.token;
+            const token = localStorage.getItem('chat-user')?.token;
+
+            console.log(token);
+            
 
             const res = await fetch('https://chatbuddy-zf63.onrender.com/api/users',{
                 headers: {
