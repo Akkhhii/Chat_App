@@ -67,6 +67,8 @@ const login = async (req, res)=>{
 
         generateTokenAndSetCookie(user._id, res);
 
+        console.log("Generated Token:", token);
+
         res.status(200).json({
             _id : user._id,
             fullName : user.fullname,
