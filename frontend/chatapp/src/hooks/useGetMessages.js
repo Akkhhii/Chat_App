@@ -8,8 +8,7 @@ const useGetMessages = () => {
     const [loading, setLoading] = useState(false);
     const messages = useSelector((state)=>state.getConversations.messages);
     const selectedUser = useSelector((state)=>state.getConversations.selectUser);
-    
-    // console.log(selectedUser._id);
+
 
     useEffect(()=>{
         const getMessages = async ()=>{
